@@ -15,6 +15,26 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+html, body, #page-one, #page-two, #page-three, #page-four {
+    height: auto;
+    min-height: 100vh;
+}
+
+#page-one, #page-two, #page-three, #page-four {
+    padding-top: 5em;
+}
+
+#mainNav {
+    background-color: white;
+    color: #ddd;
+    line-height: 4em;
+    padding: 0 1em;
+    position: fixed;
+    top: 0em;
+    width: 100%;
+    text-decoration: none;
+}
+
 
