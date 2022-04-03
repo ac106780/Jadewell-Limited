@@ -1,10 +1,9 @@
 html {
-    font-size: 14px;
     background-color: #E7F9E9;
 }
 
 @media (min-width: 768px) {
-  html {
+    html {
     font-size: 16px;
   }
 }
@@ -12,6 +11,7 @@ html {
 html {
     position: relative;
     min-height: 100%;
+    background-color: lightgray;
 }
 
 body {
@@ -21,20 +21,118 @@ html, body, #page-one, #page-two, #page-three, #page-four {
     height: auto;
     min-height: 100vh;
 }
-
 #page-one, #page-two, #page-three, #page-four {
-    padding-top: 5em;
+    padding-top: 6em;
+}
+
+#page-slogan {
+    height: 90px;
+    background-color: #57b57a;
 }
 
 #mainNav {
     background-color: white;
-    color: #ddd;
-    line-height: 4em;
-    padding: 0 1em;
+    line-height: 1.5em;
+    padding: 0em;
     position: fixed;
+    z-index: 3;
     top: 0em;
     width: 100%;
+    text-align: center;
+}
+
+#navbar {
+    position: fixed;
+    top: -50px;
+    width: 100%;
+    display: block;
+    transition: top 0.3s;
     text-decoration: none;
 }
 
+    #navbar a {
+        float: left;
+        display: block;
+        text-align: center;
+        padding: 15px;
+        text-decoration: none;
+        font-size: 17px;
+    }
 
+        #navbar a:hover {
+            text-decoration-color: white;
+        }
+
+.parallax, body {
+    background-image: url('house.jpg');
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#page-two, #page-three, #page-four {
+    background-color: #E7F9E9;
+    width: 100%
+}
+#mainNav {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0em;
+}
+
+li:hover {
+    text-decoration-color: black;
+    text-decoration: underline;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 1rem; 
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    background-color: lightgray;
+}
+
+h1 {
+    font-size: 8em;
+    text-align: center;
+    color: #0b8c16;
+    font-family: 'Ramabhadra', sans-serif;
+    text-shadow: 3px 3px #BDF1C3;
+}
+h2 {
+    font-size: 2em;
+    text-align: center;
+    color: white;
+    font-family: Arial;
+    text-shadow: 1px 1px #BDF1C3;
+}
+
+h3 {
+    font-size: 3em;
+    text-align: center;
+    color: black;
+    font-family: Arial;
+}
+
+h4 {
+    font-size: 1.5em;
+    text-align: center;
+    color: black;
+    font-family: Arial;
+}
+
+#page-five {
+    background-color: lightgray;
+    width: 100%
+}
