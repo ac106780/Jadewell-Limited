@@ -7,15 +7,15 @@ namespace WebApplication1.Models
 {
     public class Buyers
     {
-        public int BuyerID { get; set; }
+        public int BuyersID { get; set; }
         [Required]
-        public string firstName { get; set; }
+        public string? FirstName { get; set; }
         [Required]
-        public string lastName { get; set; }
-        public int offerPrice { get; set; }
+        public string? LastName { get; set; }
+        public string? OfferPrice { get; set; }
         [Required]
-        public int Phone { get; set; }
-        public int Email { get; set; }
+        public string? Phone { get; set; }
+        public string? Email { get; set; }
     }
 }
 

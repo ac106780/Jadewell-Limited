@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Areas.Identity.Data;
 
@@ -11,9 +12,10 @@ using WebApplication1.Areas.Identity.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(WebApplication1ContextDB))]
-    partial class WebApplication1ContextDBModelSnapshot : ModelSnapshot
+    [Migration("20220921225641_createBuyerHouseTable")]
+    partial class createBuyerHouseTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

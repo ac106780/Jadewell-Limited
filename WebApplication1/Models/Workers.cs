@@ -9,14 +9,14 @@ namespace WebApplication1.Models
     {
         public int WorkersID { get; set; }
         [Required]
-        public string firstName { get; set; }
+        public string? FirstName { get; set; }
         [Required]
-        public string lastName { get; set; }
+        public string? LastName { get; set; }
         [Required]
-        public int Phone { get; set; }
+        public string? Phone { get; set; }
         [Required]
         public int HouseID { get; set; }
-        public House House { get; set; }
+        public House? House { get; set; }
 
     }
 }

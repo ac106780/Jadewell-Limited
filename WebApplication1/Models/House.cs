@@ -9,12 +9,12 @@ namespace WebApplication1.Models
     {
         public int HouseID { get; set; }
         [Required]
-        public int buyPrice { get; set; }
+        public string? BuyPrice { get; set; }
         [Required]
-        public int sellPrice { get; set; }
+        public string? SellPrice { get; set; }
         [Required]
-        public int dateBought { get; set; }
+        public string? DateBought { get; set; }
         [Required]
-        public int dateSold { get; set; }       
+        public string? DateSold { get; set; }       
     }
 }
