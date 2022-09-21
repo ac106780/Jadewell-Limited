@@ -3,14 +3,14 @@
 @{
     ViewData["Title"] = "Register";
 }
-<br><br /><br /><br />
-<div class="container">
+<br /><br /><br /><br />
+ <div class="container">
 <h5>@ViewData["Title"]</h5>
-<div class="container">
+ <div class="container">
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h5>Create a new account.</h5>
+            <h6>Create a new account.</h6>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
@@ -33,7 +33,7 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h5>Use another service to register.</h5>
+            <h6>Use another service to register.</h6>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
@@ -62,6 +62,7 @@
         </section>
     </div>
 </div>
+</div></div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
