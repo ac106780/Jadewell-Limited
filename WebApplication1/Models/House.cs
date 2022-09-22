@@ -9,12 +9,14 @@ namespace WebApplication1.Models
     {
         public int HouseID { get; set; }
         [Required]
+        [Display(Name = "Buy Price")]
         public string? BuyPrice { get; set; }
-        [Required]
+        [Display(Name = "Sell Price")]
         public string? SellPrice { get; set; }
         [Required]
+        [Display(Name = "Date Bought")]
         public string? DateBought { get; set; }
-        [Required]
+        [Display(Name = "Date Sold")]
         public string? DateSold { get; set; }       
     }
 }

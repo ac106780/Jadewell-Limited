@@ -12,8 +12,8 @@ using WebApplication1.Areas.Identity.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(WebApplication1ContextDB))]
-    [Migration("20220921224754_updateHouseTable")]
-    partial class updateHouseTable
+    [Migration("20220922220544_updateWorkersTable")]
+    partial class updateWorkersTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,6 +226,63 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.BuyerHouse", b =>
+                {
+                    b.Property<int>("BuyerHouseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BuyerHouseID"), 1L, 1);
+
+                    b.Property<int>("BuyerID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BuyersID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HouseID")
+                        .HasColumnType("int");
+
+                    b.HasKey("BuyerHouseID");
+
+                    b.HasIndex("BuyersID");
+
+                    b.HasIndex("HouseID");
+
+                    b.ToTable("BuyerHouse");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Buyers", b =>
+                {
+                    b.Property<int>("BuyersID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BuyersID"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OfferPrice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BuyersID");
+
+                    b.ToTable("Buyers");
+                });
+
             modelBuilder.Entity("WebApplication1.Models.House", b =>
                 {
                     b.Property<int>("HouseID")
@@ -243,16 +300,48 @@ namespace WebApplication1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DateSold")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SellPrice")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("HouseID");
 
                     b.ToTable("House");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.houseAddress", b =>
+                {
+                    b.Property<int>("houseAddressID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("houseAddressID"), 1L, 1);
+
+                    b.Property<int>("HouseID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Suburb")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZIP")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("houseAddressID");
+
+                    b.HasIndex("HouseID");
+
+                    b.ToTable("houseAddress");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Workers", b =>
@@ -334,6 +423,34 @@ namespace WebApplication1.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.BuyerHouse", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Buyers", "Buyers")
+                        .WithMany()
+                        .HasForeignKey("BuyersID");
+
+                    b.HasOne("WebApplication1.Models.House", "House")
+                        .WithMany()
+                        .HasForeignKey("HouseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Buyers");
+
+                    b.Navigation("House");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.houseAddress", b =>
+                {
+                    b.HasOne("WebApplication1.Models.House", "House")
+                        .WithMany()
+                        .HasForeignKey("HouseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("House");
                 });
 
             modelBuilder.Entity("WebApplication1.Models.Workers", b =>

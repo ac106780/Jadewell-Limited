@@ -9,8 +9,10 @@ namespace WebApplication1.Models
     {
         public int WorkersID { get; set; }
         [Required]
+        [Display(Name = "First Name")]
         public string? FirstName { get; set; }
         [Required]
+        [Display(Name = "Last Name")]
         public string? LastName { get; set; }
         [Required]
         public string? Phone { get; set; }
