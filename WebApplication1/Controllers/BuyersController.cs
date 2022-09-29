@@ -8,92 +8,87 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Areas.Identity.Data;
 using WebApplication1.Models;
 
-namespace WebApplication1.Views.Worker
+namespace WebApplication1.Controllers
 {
-    public class WorkersController : Controller
+    public class BuyersController : Controller
     {
         private readonly WebApplication1ContextDB _context;
 
-        public WorkersController(WebApplication1ContextDB context)
+        public BuyersController(WebApplication1ContextDB context)
         {
             _context = context;
         }
 
-        // GET: Workers
+        // GET: Buyers
         public async Task<IActionResult> Index()
         {
-            var webApplication1ContextDB = _context.Workers.Include(w => w.House);
-            return View(await webApplication1ContextDB.ToListAsync());
+            return View(await _context.Buyers.ToListAsync());
         }
 
-        // GET: Workers/Details/5
+        // GET: Buyers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Workers == null)
+            if (id == null || _context.Buyers == null)
             {
                 return NotFound();
             }
 
-            var workers = await _context.Workers
-                .Include(w => w.House)
-                .FirstOrDefaultAsync(m => m.WorkersID == id);
-            if (workers == null)
+            var buyers = await _context.Buyers
+                .FirstOrDefaultAsync(m => m.BuyersID == id);
+            if (buyers == null)
             {
                 return NotFound();
             }
 
-            return View(workers);
+            return View(buyers);
         }
 
-        // GET: Workers/Create
+        // GET: Buyers/Create
         public IActionResult Create()
         {
-            ViewData["HouseID"] = new SelectList(_context.Set<House>(), "HouseID", "BuyPrice");
             return View();
         }
 
-        // POST: Workers/Create
+        // POST: Buyers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("WorkersID,FirstName,LastName,Phone,HouseID")] Workers workers)
+        public async Task<IActionResult> Create([Bind("BuyersID,FirstName,LastName,OfferPrice,Phone,Email")] Buyers buyers)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(workers);
+                _context.Add(buyers);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HouseID"] = new SelectList(_context.Set<House>(), "HouseID", "BuyPrice", workers.HouseID);
-            return View(workers);
+            return View(buyers);
         }
 
-        // GET: Workers/Edit/5
+        // GET: Buyers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Workers == null)
+            if (id == null || _context.Buyers == null)
             {
                 return NotFound();
             }
 
-            var workers = await _context.Workers.FindAsync(id);
-            if (workers == null)
+            var buyers = await _context.Buyers.FindAsync(id);
+            if (buyers == null)
             {
                 return NotFound();
             }
-            ViewData["HouseID"] = new SelectList(_context.Set<House>(), "HouseID", "BuyPrice", workers.HouseID);
-            return View(workers);
+            return View(buyers);
         }
 
-        // POST: Workers/Edit/5
+        // POST: Buyers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("WorkersID,FirstName,LastName,Phone,HouseID")] Workers workers)
+        public async Task<IActionResult> Edit(int id, [Bind("BuyersID,FirstName,LastName,OfferPrice,Phone,Email")] Buyers buyers)
         {
-            if (id != workers.WorkersID)
+            if (id != buyers.BuyersID)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace WebApplication1.Views.Worker
             {
                 try
                 {
-                    _context.Update(workers);
+                    _context.Update(buyers);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!WorkersExists(workers.WorkersID))
+                    if (!BuyersExists(buyers.BuyersID))
                     {
                         return NotFound();
                     }
@@ -118,51 +113,49 @@ namespace WebApplication1.Views.Worker
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["HouseID"] = new SelectList(_context.Set<House>(), "HouseID", "BuyPrice", workers.HouseID);
-            return View(workers);
+            return View(buyers);
         }
 
-        // GET: Workers/Delete/5
+        // GET: Buyers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Workers == null)
+            if (id == null || _context.Buyers == null)
             {
                 return NotFound();
             }
 
-            var workers = await _context.Workers
-                .Include(w => w.House)
-                .FirstOrDefaultAsync(m => m.WorkersID == id);
-            if (workers == null)
+            var buyers = await _context.Buyers
+                .FirstOrDefaultAsync(m => m.BuyersID == id);
+            if (buyers == null)
             {
                 return NotFound();
             }
 
-            return View(workers);
+            return View(buyers);
         }
 
-        // POST: Workers/Delete/5
+        // POST: Buyers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Workers == null)
+            if (_context.Buyers == null)
             {
-                return Problem("Entity set 'WebApplication1ContextDB.Workers'  is null.");
+                return Problem("Entity set 'WebApplication1ContextDB.Buyers'  is null.");
             }
-            var workers = await _context.Workers.FindAsync(id);
-            if (workers != null)
+            var buyers = await _context.Buyers.FindAsync(id);
+            if (buyers != null)
             {
-                _context.Workers.Remove(workers);
+                _context.Buyers.Remove(buyers);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WorkersExists(int id)
+        private bool BuyersExists(int id)
         {
-          return _context.Workers.Any(e => e.WorkersID == id);
+            return _context.Buyers.Any(e => e.BuyersID == id);
         }
     }
 }
